@@ -1,20 +1,32 @@
 //Variables
 let numeroMaximoPosible = 100;
 let numeroSecreto = Math.floor(Math.random()*numeroMaximoPosible)+1;
-let numeroUsuario = 0;
+let numeroUsuario;
 let intentos = 1;
 //let palabraVeces = 'vez';
 let maximosIntentos = 6;
 
 
 while (numeroUsuario != numeroSecreto) {
-    numeroUsuario = parseInt(prompt(`Me indicas un número entre 1 y ${numeroMaximoPosible}  por favor:`));
+// filtrado de numeros: no admite caracteres
+    do {	
+        numeroUsuario = prompt(`Me indicas un número entre 1 y ${numeroMaximoPosible} por favor:`);
+        numeroUsuario = (parseInt(numeroUsuario));
+        console.log(numeroUsuario);
+            if (isNaN(numeroUsuario)) {
+                alert('Por favor, ingrese un número válido');
+            }
+    } 
+    while (isNaN(numeroUsuario));
 
-    console.log(typeof(numeroUsuario));
+    // console.log(typeof(numeroUsuario));
+
+    // filtrado de numeros que superen los limites
     if (numeroUsuario == numeroSecreto) {
         //Acertamos, fue verdadera la condición
         alert(`Acertaste, el número es: ${numeroUsuario}. Lo hiciste en ${intentos} ${intentos == 1 ? 'vez' : 'veces' }`);
-    } else {
+    } 
+    else {
         if (numeroUsuario > numeroSecreto) {
             alert('El número secreto es menor');
         } else {
@@ -33,4 +45,5 @@ while (numeroUsuario != numeroSecreto) {
         //La condición no se cumplió
         //alert('Lo siento, no acertaste el número');
     }
+
 }
